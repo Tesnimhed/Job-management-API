@@ -6,7 +6,7 @@ const app = express();
 import jobRouter from './routes/jobRouter.js';
 import mongoose from 'mongoose'; 
 import {errorHandlerMiddleware} from './middlewares/errorHandlerMiddleware.js';
-import {body , validationResult} from 'express-validator';
+import authRouter from "./routes/authRouter.js"
 
 app.use(express.json()); //middleware => req.body
  
@@ -38,6 +38,7 @@ app.get('/', (req, res) => {
 // }
 // );
 
+app.use('/api/v1/auth', authRouter); 
 app.use('/api/v1/jobs', jobRouter);
 
 app.use('*', (req, res) => { 
